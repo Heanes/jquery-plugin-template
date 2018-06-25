@@ -1,0 +1,28 @@
+{
+    "name":         "pluginName",
+    "version":      "1.0.0",
+    "title":        "pluginName title",
+    "description":  "Plugin description",
+    "author":       {
+        "name":  "Heanes",
+        "email": "heanes#163.com",
+        "url":   "https://www.heanes.com/"
+    },
+    "licenses": {
+        "type": "MIT License",
+        "url": "http://opensource.org/licenses/MIT"
+    },
+    "dependencies": {
+        "jquery": ">=1.7"
+    },
+    "keywords":     [
+        "bootstrap.table"
+    ],
+    "homepage":     "https://github.com/heanes/jquery-plugin-template",
+    "demo":         "https://github.com/heanes/jquery-plugin-template",
+    "bugs":         {
+        "url": "https://github.com/heanes/jquery-plugin-template/issues"
+    },
+    "docs":         "https://github.com/heanes/jquery-plugin-template",
+    "download":     "https://github.com/heanes/jquery-plugin-template/archive/master.zip"
+}
