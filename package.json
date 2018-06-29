@@ -2,7 +2,7 @@
     "name": "jquery-plugin-template",
     "description": "An template for jquery plugin develop",
     "version": "1.0.0",
-    "main": "./dist/jquery-plugin-template.js",
+    "main": "./dist/js/pluginName.js",
     "directories": {
         "doc": "doc"
     },
@@ -19,7 +19,7 @@
     },
     "scripts": {
         "grunt": "grunt --gruntfile Gruntfile.js",
-        "lint": "eslint src/jquery-plugin-template.js"
+        "lint": "eslint src/pluginName.js"
     },
     "repository": {
         "type": "git",
