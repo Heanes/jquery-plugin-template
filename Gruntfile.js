@@ -88,7 +88,7 @@ module.exports = function(grunt) {
             docDist: {
                 cwd: 'dist',                                // set working folder / root to copy
                 src: '**/*',                                // copy all files and subfolders
-                dest: 'doc/static/vendor/<%= pkg.name %>/<%= pkg.version %>',  // destination folder
+                dest: 'doc/static/vendor/js/<%= pkg.name %>/<%= pkg.version %>',  // destination folder
                 expand: true                                // required when using cwd
             }
         },
