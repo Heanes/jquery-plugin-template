@@ -10,6 +10,17 @@ module.exports = function(grunt) {
                 ' * Licensed <%= grunt.util._.get(pkg.licenses, "type") %>\n' +
                 ' */\n',
         // Task configuration.
+        babel: {
+            options: {
+                sourceMap: true,
+                presets: ['env']
+            },
+            dist: {
+                files: {
+                    'dist/js/<%= pkg.name %>.js': 'src/js/<%= pkg.name %>.js'
+                }
+            }
+        },
         clean: ['dist', 'doc/static/vendor/<%= pkg.name %>/<%= pkg.version %>'],
         concat: {
             options: {
@@ -42,7 +53,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'dist/js/<%= pkg.name %>.min.js': ['src/js/<%=pkg.name %>.js'],
+                    'dist/js/<%= pkg.name %>.min.js': ['dist/js/<%=pkg.name %>.js'],
                     //'dist/<%= pkg.name %>-all.min.js': ['dist/<%=pkg.name %>-all.js'],
                     //'dist/js/<%= pkg.name %>-locale-all.min.js': ['dist/js/<%=pkg.name %>-locale-all.js']
                 }
@@ -103,12 +114,13 @@ module.exports = function(grunt) {
     // 加载包含 "uglify" 任务的插件。
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-release');
 
     // 默认被执行的任务列表。
-    grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'uglify','copy']);
+    grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'babel','uglify','copy']);
 
 };

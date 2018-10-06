@@ -5,24 +5,19 @@
  */
 ;(function($, window, document, undefined) {
     "use strict";
-    var pluginName = 'pluginName';
-    var _default = {};
-    _default.option = {
+    let pluginName = 'pluginName';
+    let version = '1.0.0';
+    const DEFAULTS = {};
+    DEFAULTS.option = {
         option1: undefined
     };
 
-    var PluginName = function (element, options) {
+    let PluginName = function (element, options) {
         this._name = pluginName;
         this.v = this.version = 'v1.0.0';
-        this._defaults = _default;
+        this._defaults = this.getDefaultOption();
 
-        this.$element = $(element);
-        this.$el_ = this.$element.clone(true);  // 保留一份原始dom
-
-        this.options = $.extend(true, {}, this._defaults.option, options);
-        this.handleToStandardOption(this.options);
-
-        this.init();
+        this.init(element, options);
 
         return {
             // Options (public access)
@@ -42,12 +37,24 @@
          * @doc 初始化
          * @returns {PluginName}
          */
-        init: function () {
+        init: function (element, options) {
+            this.$element = $(element);
+            this.$el_ = this.$element.clone(true);  // 保留一份原始dom
+            this.options = this.getOptions(options);
 
             // do something
             this.render();
 
             return this;
+        },
+
+        /**
+         * @doc 获取options
+         * @param options
+         * @returns {void | {}}
+         */
+        getOptions: function (options) {
+            return this.handleToStandardOption(options);
         },
 
         /**
@@ -74,6 +81,14 @@
         },
 
         /**
+         * @doc 获取默认选项
+         * @returns Object
+         */
+        getDefaultOption: function () {
+            return PluginName.DEFAULTS;
+        },
+
+        /**
          * @doc 销毁插件功能
          * @returns {PluginName}
          */
@@ -92,6 +107,19 @@
 
     };
 
+    PluginName.V = PluginName.VERSION = version;
+    /**
+     * @doc 默认选项
+     * @type Object
+     */
+    PluginName.DEFAULTS = DEFAULTS;
+    /**
+     * @doc 语言包
+     * @type {{}}
+     */
+    PluginName.LANGUAGES = {};
+
+
     /* --------------------------- 开发用内部功能函数 --------------------------- */
     function logError(message) {
         if(window.console){
@@ -106,10 +134,10 @@
      * @returns {undefined|*}
      */
     $.fn[pluginName] = function (options, args) {
-        var result = undefined;
+        let result = undefined;
         this.each(function () {
-            var $this = $(this);
-            var _this = $.data(this, pluginName);
+            let $this = $(this);
+            let _this = $.data(this, pluginName);
             if (typeof options === 'string') {
                 if (!_this) {
                     logError('Not initialized, can not call method : ' + options);
@@ -136,5 +164,9 @@
         });
         return result || this;
     };
+
+    $.fn.pluginName.Constructor = PluginName;
+    $.fn.pluginName.defaults = PluginName.DEFAULTS;
+    $.fn.pluginName.languages = PluginName.LANGUAGES;
 
 })(jQuery, window, document);

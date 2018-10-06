@@ -7,7 +7,10 @@
         "doc": "doc"
     },
     "devDependencies": {
+        "babel-core": "^6.26.3",
+        "babel-preset-env": "^1.7.0",
         "grunt": "^1.0.3",
+        "grunt-babel": "^7.0.0",
         "grunt-cli": "^1.2.0",
         "grunt-contrib-clean": "^1.1.0",
         "grunt-contrib-concat": "^1.0.1",
